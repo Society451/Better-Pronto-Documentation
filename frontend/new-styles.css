@@ -1,21 +1,21 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
+    background-color: #f9f9f9;
     color: #333;
 }
 
 header {
-    background-color: grey;
+    background-color: #4CAF50;
     color: white;
-    padding: 10px 0;
+    padding: 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    background-color: grey;
+    background-color: #4CAF50;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -31,7 +31,7 @@ footer {
 }
 
 h1, h2, h3 {
-    color: #8C1515; /* Stanford red */
+    color: #333;
 }
 
 pre {
@@ -42,10 +42,9 @@ pre {
 }
 
 #taskbar {
-    background-color: grey;
+    background-color: #333;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 2px 0; /* reduced padding */
 }
 
 #taskbar a {
@@ -53,7 +52,7 @@ pre {
     display: block;
     color: white;
     text-align: center;
-    padding: 10px 15px; /* Adjusted padding to reduce size */
+    padding: 14px 20px;
     text-decoration: none;
     transition: background-color 0.3s;
 }
