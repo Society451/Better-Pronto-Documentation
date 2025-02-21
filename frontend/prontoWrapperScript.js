@@ -23,6 +23,7 @@ function generateFunctionsHTML(functions) {
             html += `<h4>${funcName}</h4><p>${funcDetails.description}</p>`;
             html += `<pre>Parameters: ${JSON.stringify(funcDetails.parameters)}</pre>`;
             html += `<pre>Example: ${funcDetails.example}</pre>`;
+            html += `<pre>Endpoint: ${funcDetails.endpoint}</pre>`;
         }
     }
     return html;

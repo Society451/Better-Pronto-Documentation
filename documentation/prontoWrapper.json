@@ -6,63 +6,148 @@
           "requestVerificationEmail": {
             "description": "Sends a verification email to the user.",
             "parameters": ["email"],
-            "example": "requestVerificationEmail('user@example.com')"
+            "example": "requestVerificationEmail('user@example.com')",
+            "endpoint": "https://accounts.pronto.io/api/v1/user.verify"
           },
           "verification_code_to_login_token": {
             "description": "Converts a verification code to a login token.",
             "parameters": ["email", "verification_code"],
-            "example": "verification_code_to_login_token('user@example.com', '123456')"
+            "example": "verification_code_to_login_token('user@example.com', '123456')",
+            "endpoint": "https://accounts.pronto.io/api/v3/user.login"
           },
           "login_token_to_access_token": {
             "description": "Converts a login token to an access token.",
             "parameters": ["logintoken"],
-            "example": "login_token_to_access_token('logintoken')"
+            "example": "login_token_to_access_token('logintoken')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/user.tokenlogin"
           }
         },
         "bubble_management": {
           "getUsersBubbles": {
             "description": "Retrieves all bubbles associated with the user.",
             "parameters": ["access_token"],
-            "example": "getUsersBubbles('access_token')"
+            "example": "getUsersBubbles('access_token')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v3/bubble.list"
           },
-          "createBubble": {
-            "description": "Creates a new bubble.",
-            "parameters": ["access_token", "orgID", "title", "category_id"],
-            "example": "createBubble('access_token', 'orgID', 'title', 'category_id')"
+          "get_bubble_messages": {
+            "description": "Retrieves the last 50 messages in a bubble, given the bubble ID and an optional latest message ID.",
+            "parameters": ["access_token", "bubbleID", "latestMessageID"],
+            "example": "get_bubble_messages('access_token', 'bubbleID', 'latestMessageID')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.history"
+          },
+          "get_bubble_info": {
+            "description": "Retrieves information about a bubble.",
+            "parameters": ["access_token", "bubbleID"],
+            "example": "get_bubble_info('access_token', 'bubbleID')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v2/bubble.info"
           },
           "markBubble": {
             "description": "Marks a bubble as read.",
             "parameters": ["access_token", "bubbleID"],
-            "example": "markBubble('access_token', 'bubbleID')"
+            "example": "markBubble('access_token', 'bubbleID')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.mark"
+          },
+          "createDM": {
+            "description": "Creates a direct message (DM).",
+            "parameters": ["access_token", "id", "orgID"],
+            "example": "createDM('access_token', 'id', 'orgID')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/dm.create"
+          },
+          "createBubble": {
+            "description": "Creates a new bubble.",
+            "parameters": ["access_token", "orgID", "title", "category_id"],
+            "example": "createBubble('access_token', 'orgID', 'title', 'category_id')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.create"
+          },
+          "addMemberToBubble": {
+            "description": "Adds a member to a bubble.",
+            "parameters": ["access_token", "bubbleID", "invitations", "sendemails", "sendsms"],
+            "example": "addMemberToBubble('access_token', 'bubbleID', 'invitations', 'sendemails', 'sendsms')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.addmember"
+          },
+          "kickUserFromBubble": {
+            "description": "Kicks a user from a bubble.",
+            "parameters": ["access_token", "bubbleID", "users"],
+            "example": "kickUserFromBubble('access_token', 'bubbleID', 'users')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.kick"
+          },
+          "updateBubble": {
+            "description": "Updates a bubble's settings.",
+            "parameters": ["access_token", "bubbleID", "title", "category_id", "changetitle", "addmember", "leavegroup", "create_message", "assign_task", "pin_message", "changecategory", "removemember", "create_videosession", "videosessionrecordcloud", "create_announcement"],
+            "example": "updateBubble('access_token', 'bubbleID', 'title', 'category_id', 'changetitle', 'addmember', 'leavegroup', 'create_message', 'assign_task', 'pin_message', 'changecategory', 'removemember', 'create_videosession', 'videosessionrecordcloud', 'create_announcement')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.update"
+          },
+          "pinMessage": {
+            "description": "Pins a message to a bubble.",
+            "parameters": ["access_token", "pinned_message_id", "pinned_message_expires_at"],
+            "example": "pinMessage('access_token', 'pinned_message_id', 'pinned_message_expires_at')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.pinmessage"
+          },
+          "createInvite": {
+            "description": "Creates an invite link for a bubble.",
+            "parameters": ["bubbleID", "access", "expires", "access_token"],
+            "example": "createInvite('bubbleID', 'access', 'expires', 'access_token')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/bubble.createinvite"
           }
         },
         "message_management": {
           "send_message_to_bubble": {
             "description": "Sends a message to a bubble.",
             "parameters": ["access_token", "bubbleID", "created_at", "message", "userID", "uuid", "parentmessage_id"],
-            "example": "send_message_to_bubble('access_token', 'bubbleID', 'created_at', 'message', 'userID', 'uuid', 'parentmessage_id')"
+            "example": "send_message_to_bubble('access_token', 'bubbleID', 'created_at', 'message', 'userID', 'uuid', 'parentmessage_id')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/message.send"
           },
           "addReaction": {
             "description": "Adds a reaction to a message.",
             "parameters": ["access_token", "messageID", "reactiontype_id"],
-            "example": "addReaction('access_token', 'messageID', 'reactiontype_id')"
+            "example": "addReaction('access_token', 'messageID', 'reactiontype_id')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/message.addreaction"
           },
           "removeReaction": {
             "description": "Removes a reaction from a message.",
             "parameters": ["access_token", "messageID", "reactiontype_id"],
-            "example": "removeReaction('access_token', 'messageID', 'reactiontype_id')"
+            "example": "removeReaction('access_token', 'messageID', 'reactiontype_id')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/message.removereaction"
+          },
+          "editMessage": {
+            "description": "Edits a message.",
+            "parameters": ["access_token", "newMessage", "messageID"],
+            "example": "editMessage('access_token', 'newMessage', 'messageID')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/message.edit"
+          },
+          "deleteMessage": {
+            "description": "Deletes a message.",
+            "parameters": ["access_token", "messageID"],
+            "example": "deleteMessage('access_token', 'messageID')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/message.delete"
           }
         },
         "user_management": {
           "userInfo": {
             "description": "Retrieves information about a user.",
             "parameters": ["access_token", "id"],
-            "example": "userInfo('access_token', 'id')"
+            "example": "userInfo('access_token', 'id')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/user.info"
           },
           "mutualGroups": {
             "description": "Retrieves mutual groups between users.",
             "parameters": ["access_token", "id"],
-            "example": "mutualGroups('access_token', 'id')"
+            "example": "mutualGroups('access_token', 'id')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/user.mutualgroups"
+          },
+          "setStatus": {
+            "description": "Sets the online/offline status of a user.",
+            "parameters": ["access_token", "userID", "isonline", "lastpresencetime"],
+            "example": "setStatus('access_token', 'userID', 'isonline', 'lastpresencetime')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/user.setstatus"
+          }
+        },
+        "other_functions": {
+          "searchMessage": {
+            "description": "Searches for messages.",
+            "parameters": ["access_token", "query", "bubbleID", "orderby", "user_ids"],
+            "example": "searchMessage('access_token', 'query', 'bubbleID', 'orderby', 'user_ids')",
+            "endpoint": "https://stanfordohs.pronto.io/api/v1/message.search"
           }
         }
       }
