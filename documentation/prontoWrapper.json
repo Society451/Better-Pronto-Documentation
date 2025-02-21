@@ -1,0 +1,70 @@
+{
+    "pronto_py": {
+      "description": "The `pronto.py` module contains various functions to interact with the Pronto API. These functions handle tasks such as authentication, message sending, bubble management, and user information retrieval.",
+      "functions": {
+        "authentication": {
+          "requestVerificationEmail": {
+            "description": "Sends a verification email to the user.",
+            "parameters": ["email"],
+            "example": "requestVerificationEmail('user@example.com')"
+          },
+          "verification_code_to_login_token": {
+            "description": "Converts a verification code to a login token.",
+            "parameters": ["email", "verification_code"],
+            "example": "verification_code_to_login_token('user@example.com', '123456')"
+          },
+          "login_token_to_access_token": {
+            "description": "Converts a login token to an access token.",
+            "parameters": ["logintoken"],
+            "example": "login_token_to_access_token('logintoken')"
+          }
+        },
+        "bubble_management": {
+          "getUsersBubbles": {
+            "description": "Retrieves all bubbles associated with the user.",
+            "parameters": ["access_token"],
+            "example": "getUsersBubbles('access_token')"
+          },
+          "createBubble": {
+            "description": "Creates a new bubble.",
+            "parameters": ["access_token", "orgID", "title", "category_id"],
+            "example": "createBubble('access_token', 'orgID', 'title', 'category_id')"
+          },
+          "markBubble": {
+            "description": "Marks a bubble as read.",
+            "parameters": ["access_token", "bubbleID"],
+            "example": "markBubble('access_token', 'bubbleID')"
+          }
+        },
+        "message_management": {
+          "send_message_to_bubble": {
+            "description": "Sends a message to a bubble.",
+            "parameters": ["access_token", "bubbleID", "created_at", "message", "userID", "uuid", "parentmessage_id"],
+            "example": "send_message_to_bubble('access_token', 'bubbleID', 'created_at', 'message', 'userID', 'uuid', 'parentmessage_id')"
+          },
+          "addReaction": {
+            "description": "Adds a reaction to a message.",
+            "parameters": ["access_token", "messageID", "reactiontype_id"],
+            "example": "addReaction('access_token', 'messageID', 'reactiontype_id')"
+          },
+          "removeReaction": {
+            "description": "Removes a reaction from a message.",
+            "parameters": ["access_token", "messageID", "reactiontype_id"],
+            "example": "removeReaction('access_token', 'messageID', 'reactiontype_id')"
+          }
+        },
+        "user_management": {
+          "userInfo": {
+            "description": "Retrieves information about a user.",
+            "parameters": ["access_token", "id"],
+            "example": "userInfo('access_token', 'id')"
+          },
+          "mutualGroups": {
+            "description": "Retrieves mutual groups between users.",
+            "parameters": ["access_token", "id"],
+            "example": "mutualGroups('access_token', 'id')"
+          }
+        }
+      }
+    }
+  }
