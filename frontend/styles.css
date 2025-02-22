@@ -242,80 +242,100 @@ body.nav-collapsed header {
 .function-card, .class-card, .variable-card, .event-listener-card {
     background: white;
     border-radius: 8px;
-    padding: 2.5rem;
-    margin: 3rem 0;
+    padding: 1.5rem;
+    margin: 1rem 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden; /* Prevent content from spilling out */
-    word-wrap: break-word; /* Allow long words to break */
-    overflow-wrap: break-word;
     border: 1px solid #e2e8f0;
     transition: all 0.3s ease;
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-}
-
-.card-header {
-    border-right: 2px solid #e2e8f0;
-    padding-right: 2rem;
-}
-
-.card-content {
-    padding-left: 2rem;
+    display: block; /* Changed from grid to block */
 }
 
 .function-name, .class-name, .variable-name, .event-name {
     color: #2d3748;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 0.75rem 0;
     font-size: 1.25rem;
     font-weight: 600;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.parameter-item, .returns-info {
+.function-description, .class-description, .variable-description {
+    margin: 0.75rem 0;
+    color: #4a5568;
+    line-height: 1.4;
+}
+
+/* Parameters Section */
+.parameters-section, .returns-section {
+    margin: 0.75rem 0;
+}
+
+.parameters-section h5, .returns-section h5 {
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.parameter-item {
     background: #f8f9fa;
-    padding: 2rem;
+    padding: 0.75rem 1rem;
     border-radius: 4px;
-    margin: 1.5rem 0;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    margin: 0.5rem 0;
     border: 1px solid #edf2f7;
 }
 
-.parameter-name {
-    color: #e53e3e;
-    font-weight: 600;
-    font-size: 0.95rem;
-    word-break: break-word;
-    max-width: 100%;
-    display: inline-block;
+/* Endpoint Section */
+.endpoint-section {
+    margin: 0.75rem 0;
 }
 
-.parameter-type {
-    color: #3182ce;
-    font-size: 0.9rem;
-    padding: 0.2rem 0.5rem;
-    background: #ebf8ff;
-    border-radius: 4px;
-    margin-left: 0.5rem;
-    word-break: break-word;
-    max-width: 100%;
-    display: inline-block;
-}
-
-.parameter-optional {
-    background: #95a5a6;
-    color: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-}
-
-.parameter-description {
-    margin-top: 0.75rem;
+.endpoint-section h5 {
     color: #4a5568;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.endpoint-info code {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Example Section */
+.example-section {
+    margin: 0.75rem 0;
+}
+
+.example-section h5 {
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.example-info pre {
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+}
+
+/* Remove unnecessary spacing */
+.card-header, .card-content {
+    padding: 0;
+    border: none;
+}
+
+/* Adjust grid layouts */
+.functions-grid, .classes-grid, .variables-grid, .event-listeners-grid {
+    padding: 1rem;
+}
+
+/* Media query adjustments */
+@media (max-width: 1024px) {
+    .function-card, .class-card, .variable-card, .event-listener-card {
+        padding: 1rem;
+    }
 }
 
 /* Code Blocks */
@@ -354,11 +374,12 @@ code {
 
 /* Grid Layouts */
 .functions-grid, .classes-grid, .variables-grid, .event-listeners-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
     margin: 2rem 0;
     padding: 2rem;
+    max-width: 100%;
 }
 
 /* Responsive Design */
@@ -372,8 +393,41 @@ code {
     }
     
     .function-card, .class-card, .variable-card, .event-listener-card {
-        padding: 2rem;
-        margin: 2rem 0;
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .card-header {
+        flex: none;
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #e2e8f0;
+        padding-right: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-content {
+        width: 100%;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .function-card, .class-card, .variable-card, .event-listener-card {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        border-right: none;
+        border-bottom: 2px solid #e2e8f0;
+        padding-right: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-content {
+        padding-left: 0;
     }
 }
 
