@@ -35,6 +35,7 @@ function loadSection(section) {
         .then(data => {
             // Use the section key in the received JSON
             document.getElementById('content').innerHTML = generateHTML(data[section] || data);
+            highlightCode();
         })
         .catch(error => console.error(`Error loading ${section} documentation:`, error));
 }
@@ -145,7 +146,7 @@ function generateProntoExampleHTML(example) {
         <div class="example-section">
             <h5>Example</h5>
             <div class="example-info">
-                <pre><code>${example}</code></pre>
+                <pre><code class="language-python">${example}</code></pre>
             </div>
         </div>`;
 }
@@ -276,11 +277,16 @@ function generateEventListenersHTML(eventListeners) {
                 <h4 class="event-name">${listener.event}</h4>
                 <div class="event-description">${listener.description}</div>
                 <div class="event-handler">
-                    <pre><code>${listener.handler}</code></pre>
+                    <pre><code class="language-javascript">${listener.handler}</code></pre>
                 </div>
             </div>`;
     });
 
     html += `</div></div>`;
     return html;
+}
+
+// Add this function to highlight code after content is loaded
+function highlightCode() {
+    Prism.highlightAll();
 }
