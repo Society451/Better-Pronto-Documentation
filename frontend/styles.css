@@ -38,17 +38,31 @@ header {
     transition: background-color 0.3s;
     font-weight: 500;
     font-size: 0.95rem;
+    position: relative;
+    border-bottom: 3px solid transparent;
 }
 
 #taskbar a:hover {
     background-color: #465c71;
 }
 
+#taskbar a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#taskbar a.python-tab {
+    border-bottom-color: #306998;
+}
+
+#taskbar a.javascript-tab {
+    border-bottom-color: #f7df1e;
+}
+
 /* Main Content Styles */
 .documentation-section {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 0 2rem;
 }
 
 .section-title {
@@ -64,8 +78,8 @@ header {
     color: #4a5568;
     font-size: 1.1rem;
     line-height: 1.7;
-    margin: 1.5rem 0 2.5rem;
-    padding: 1rem;
+    margin: 2rem 0 4rem;
+    padding: 2rem;
     background: #fff;
     border-left: 4px solid #3182ce;
     border-radius: 0 8px 8px 0;
@@ -75,14 +89,17 @@ header {
 .function-card, .class-card, .variable-card, .event-listener-card {
     background: white;
     border-radius: 8px;
-    padding: 2rem;
-    margin: 1.5rem 0;
+    padding: 3rem;
+    margin: 3rem 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden; /* Prevent content from spilling out */
     word-wrap: break-word; /* Allow long words to break */
     overflow-wrap: break-word;
     border: 1px solid #e2e8f0;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .function-name, .class-name, .variable-name, .event-name {
@@ -96,9 +113,9 @@ header {
 
 .parameter-item, .returns-info {
     background: #f8f9fa;
-    padding: 1.25rem;
+    padding: 2rem;
     border-radius: 4px;
-    margin: 0.75rem 0;
+    margin: 1.5rem 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
     border: 1px solid #edf2f7;
@@ -143,11 +160,13 @@ header {
 pre {
     background: #2d3748;
     color: #ecf0f1;
-    padding: 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     border-radius: 8px;
     overflow-x: auto;
     margin: 1rem 0;
     position: relative;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
 }
 
 pre::before {
@@ -167,16 +186,18 @@ code {
     font-size: 0.9rem;
     padding-top: 1rem;
     display: block;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
 }
 
 /* Grid Layouts */
 .functions-grid, .classes-grid, .variables-grid, .event-listeners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 1rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 4rem;
+    margin: 2rem 0;
     align-items: start; /* Prevent cards from stretching */
-    padding: 1rem;
+    padding: 2rem;
 }
 
 /* Responsive Design */
@@ -184,24 +205,24 @@ code {
     .functions-grid, .classes-grid, .variables-grid, .event-listeners-grid {
         grid-template-columns: 1fr;
     }
+
+    .documentation-section {
+        padding: 0 1.5rem;
+    }
+    
+    .function-card, .class-card, .variable-card, .event-listener-card {
+        padding: 2rem;
+        margin: 2rem 0;
+    }
 }
 
 /* Footer Styles */
 footer {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
 #content {
-    padding: 2rem;
-    margin-bottom: 80px; /* Ensure content is not hidden behind the footer */
+    padding: 3rem 4rem;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -212,7 +233,7 @@ h1, h2, h3 {
 
 /* Pronto API Documentation Specific Styles */
 .category-section {
-    margin: 3rem 0;
+    margin: 5rem 0;
 }
 
 .category-title {
@@ -223,23 +244,40 @@ h1, h2, h3 {
 }
 
 .endpoint-section {
-    margin-top: 1rem;
+    margin: 2rem 0;
 }
 
 .endpoint-info code {
-    background: #2d3748;
-    color: #3498db;
-    padding: 1rem;
-    border-radius: 4px;
+    background: #1a202c;
+    color: #63b3ed;
+    padding: 1.5rem;
+    border-radius: 6px;
     display: inline-block;
     word-break: break-all; /* Break long URLs */
     max-width: 100%;
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
+    margin: 0.75rem 0;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.endpoint-link {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.endpoint-link:hover {
+    transform: translateY(-2px);
+}
+
+.endpoint-link:hover code {
+    border-color: #63b3ed;
+    box-shadow: 0 4px 12px rgba(99, 179, 237, 0.1);
 }
 
 .example-section {
-    margin-top: 2rem;
+    margin: 3rem 0;
 }
 
 .example-info {
@@ -310,13 +348,15 @@ h1, h2, h3 {
 .subsection-title {
     color: #2d3748;
     font-size: 1.5rem;
-    margin: 2.5rem 0 1.5rem;
+    margin: 4rem 0 3rem;
     font-weight: 500;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
 }
 
 /* Parameters and Returns Sections */
 .parameters-section, .returns-section {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
 }
 
 .parameters-section h5, .returns-section h5 {
@@ -326,9 +366,17 @@ h1, h2, h3 {
     font-weight: 500;
 }
 
+.returns-section {
+    margin: 3rem 0 2rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
 /* Additional Spacing for Nested Content */
 .method-item {
-    margin: 2rem 0;
-    padding-left: 1rem;
+    margin: 4rem 0;
+    padding-left: 3rem;
     border-left: 3px solid #e2e8f0;
 }

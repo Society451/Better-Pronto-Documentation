@@ -12,19 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadSection(section) {
-    // Map each section to its JSON file
     const sectionMap = {
-        'prontoWrapper': 'documentation/prontoWrapper.json',
-        'websockets': 'documentation/websockets.json',
-        'verificationCode': 'documentation/verificationCode.json',
-        'systemcheck': 'documentation/systemcheck.json',
-        'readjson': 'documentation/readjson.json',
-        'main': 'documentation/main.json',
-        'login': 'documentation/login.json',
-        'chat': 'documentation/chat.json'
+        'prontoWrapper': { file: 'documentation/prontoWrapper.json', lang: 'python' },
+        'websockets': { file: 'documentation/websockets.json', lang: 'javascript' },
+        'verificationCode': { file: 'documentation/verificationCode.json', lang: 'javascript' },
+        'systemcheck': { file: 'documentation/systemcheck.json', lang: 'python' },
+        'readjson': { file: 'documentation/readjson.json', lang: 'python' },
+        'main': { file: 'documentation/main.json', lang: 'python' },
+        'login': { file: 'documentation/login.json', lang: 'javascript' },
+        'chat': { file: 'documentation/chat.json', lang: 'javascript' }
     };
 
-    const jsonFilePath = sectionMap[section];
+    // Add language class to active tab
+    document.querySelectorAll('#taskbar a').forEach(link => {
+        link.classList.remove('python-tab', 'javascript-tab', 'active');
+        if (link.getAttribute('data-section') === section) {
+            link.classList.add(`${sectionMap[section].lang}-tab`, 'active');
+        }
+    });
+
+    const jsonFilePath = sectionMap[section].file;
     fetch(jsonFilePath)
         .then(response => {
             if (!response.ok) {
@@ -134,7 +141,9 @@ function generateProntoEndpointHTML(endpoint) {
         <div class="endpoint-section">
             <h5>Endpoint</h5>
             <div class="endpoint-info">
-                <code>${endpoint}</code>
+                <a href="${endpoint}" target="_blank" class="endpoint-link">
+                    <code>${endpoint}</code>
+                </a>
             </div>
         </div>`;
 }
