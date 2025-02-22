@@ -40,6 +40,12 @@ function loadSection(section) {
 }
 
 function generateHTML(doc) {
+    // Special handling for prontoWrapper format
+    if (doc.pronto_py) {
+        return generateProntoWrapperHTML(doc.pronto_py);
+    }
+
+    // Regular documentation format
     let html = `
         <div class="documentation-section">
             <h2 class="section-title">${doc.file || 'Documentation'}</h2>
@@ -61,6 +67,87 @@ function generateHTML(doc) {
 
     html += `</div></div>`;
     return html;
+}
+
+// Add new function to handle prontoWrapper format
+function generateProntoWrapperHTML(doc) {
+    let html = `
+        <div class="documentation-section">
+            <h2 class="section-title">Pronto API Documentation</h2>
+            <div class="section-description">${doc.description}</div>
+            <div class="content-wrapper">`;
+
+    // Generate HTML for each category of functions
+    for (const [category, functions] of Object.entries(doc.functions)) {
+        html += `
+            <div class="category-section">
+                <h3 class="category-title">${formatCategoryTitle(category)}</h3>
+                <div class="functions-grid">`;
+
+        // Generate HTML for each function in the category
+        for (const [funcName, funcData] of Object.entries(functions)) {
+            html += `
+                <div class="function-card">
+                    <h4 class="function-name">${funcName}</h4>
+                    <div class="function-description">${funcData.description}</div>
+                    ${generateProntoParametersHTML(funcData.parameters)}
+                    ${generateProntoEndpointHTML(funcData.endpoint)}
+                    ${generateProntoExampleHTML(funcData.example)}
+                </div>`;
+        }
+
+        html += `</div></div>`;
+    }
+
+    html += `</div></div>`;
+    return html;
+}
+
+function formatCategoryTitle(category) {
+    return category
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
+function generateProntoParametersHTML(parameters) {
+    if (!parameters || parameters.length === 0) return '';
+    
+    return `
+        <div class="parameters-section">
+            <h5>Parameters</h5>
+            <div class="parameters-list">
+                ${parameters.map(param => `
+                    <div class="parameter-item">
+                        <span class="parameter-name">${param}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>`;
+}
+
+function generateProntoEndpointHTML(endpoint) {
+    if (!endpoint) return '';
+    
+    return `
+        <div class="endpoint-section">
+            <h5>Endpoint</h5>
+            <div class="endpoint-info">
+                <code>${endpoint}</code>
+            </div>
+        </div>`;
+}
+
+function generateProntoExampleHTML(example) {
+    if (!example) return '';
+    
+    return `
+        <div class="example-section">
+            <h5>Example</h5>
+            <div class="example-info">
+                <pre><code>${example}</code></pre>
+            </div>
+        </div>`;
 }
 
 function generateFunctionsHTML(functions) {
