@@ -15,22 +15,33 @@ header {
     padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+body.nav-collapsed header {
+    margin-left: 0;
 }
 
 /* Navigation Wrapper */
 #nav-wrapper {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    height: 100vh;
     z-index: 1000;
-    background-color: #2d3748;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+#nav-wrapper.collapsed {
+    transform: translateX(-250px);
 }
 
 #nav-toggle {
     position: absolute;
-    top: 50%;
+    top: 1rem;
     right: -40px;
-    transform: translateY(-50%);
     width: 40px;
     height: 40px;
     background: #2d3748;
@@ -41,6 +52,7 @@ header {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
 }
 
 #nav-toggle:hover {
@@ -81,16 +93,14 @@ header {
 /* Navigation Styles */
 #taskbar {
     background-color: #2d3748;
-    padding: 1.5rem;
+    width: 250px;
+    height: 100vh;
+    padding: 1rem;
     display: flex;
+    flex-direction: column;
     gap: 2rem;
-    overflow-x: auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transform: translateX(0);
-    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .language-group {
@@ -343,6 +353,7 @@ footer {
     max-width: 1400px;
     margin: 0 auto;
     transition: margin-left 0.3s ease;
+    margin-left: 250px;
 }
 
 body.nav-collapsed #content {

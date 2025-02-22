@@ -1,13 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Add navigation toggle functionality
     const navToggle = document.getElementById('nav-toggle');
-    const taskbar = document.getElementById('taskbar');
+    const navWrapper = document.getElementById('nav-wrapper');
     const body = document.body;
 
     navToggle.addEventListener('click', () => {
-        taskbar.classList.toggle('collapsed');
+        navWrapper.classList.toggle('collapsed');
         navToggle.classList.toggle('collapsed');
         body.classList.toggle('nav-collapsed');
+    });
+
+    // Add keyboard shortcut for toggle (Alt + N)
+    document.addEventListener('keydown', (event) => {
+        if (event.altKey && event.key.toLowerCase() === 'n') {
+            navToggle.click();
+        }
     });
 
     // Listen for clicks on navigation links
