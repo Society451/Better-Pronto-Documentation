@@ -1,0 +1,186 @@
+{
+    "file": "readjson.py",
+    "description": "This module provides functions to handle JSON data related to bubbles, including creating folders, saving responses, and retrieving various bubble information.",
+    "functions": [
+      {
+        "name": "create_bubble_folders",
+        "description": "Creates folders for categorized, uncategorized, and DM bubbles based on the bubble overview JSON data.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          },
+          {
+            "name": "bubbles_path",
+            "type": "str",
+            "description": "Base path where bubble folders will be created."
+          },
+          {
+            "name": "sanitize_folder_name",
+            "type": "function",
+            "description": "Function to sanitize folder names."
+          }
+        ]
+      },
+      {
+        "name": "save_response_to_file",
+        "description": "Saves the given response data to a specified file.",
+        "parameters": [
+          {
+            "name": "response_data",
+            "type": "dict",
+            "description": "The response data to be saved."
+          },
+          {
+            "name": "file_path",
+            "type": "str",
+            "description": "Path to the file where the response data will be saved."
+          }
+        ]
+      },
+      {
+        "name": "getvalueLogin",
+        "description": "Retrieves a specific value from the login JSON file.",
+        "parameters": [
+          {
+            "name": "file_path",
+            "type": "str",
+            "description": "Path to the login JSON file."
+          },
+          {
+            "name": "value",
+            "type": "str",
+            "description": "The key whose value needs to be retrieved."
+          }
+        ]
+      },
+      {
+        "name": "getaccesstoken",
+        "description": "Retrieves the access token from the specified JSON file.",
+        "parameters": [
+          {
+            "name": "file_path",
+            "type": "str",
+            "description": "Path to the JSON file containing the access token."
+          }
+        ]
+      },
+      {
+        "name": "getdetailedbubbleoverview",
+        "description": "Retrieves detailed bubble overview information from the specified JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "getbubbleoverview",
+        "description": "Retrieves bubble overview information from the specified JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "get_dms",
+        "description": "Retrieves direct messages (DMs) from the bubble overview JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "get_categorized_bubbles",
+        "description": "Retrieves categorized bubbles from the bubble overview JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "get_uncategorized_bubbles",
+        "description": "Retrieves uncategorized bubbles from the bubble overview JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "get_unread_bubbles",
+        "description": "Retrieves unread bubbles from the bubble overview JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "get_categories",
+        "description": "Retrieves categories from the bubble overview JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          }
+        ]
+      },
+      {
+        "name": "get_clientUserInfo",
+        "description": "Retrieves client user information from the specified JSON file.",
+        "parameters": [
+          {
+            "name": "authTokenJSONPath",
+            "type": "str",
+            "description": "Path to the JSON file containing the authentication token."
+          }
+        ]
+      },
+      {
+        "name": "get_org_id",
+        "description": "Retrieves the organization ID from the specified JSON file.",
+        "parameters": [
+          {
+            "name": "authTokenJSONPath",
+            "type": "str",
+            "description": "Path to the JSON file containing the authentication token."
+          }
+        ]
+      },
+      {
+        "name": "get_channelcodes",
+        "description": "Retrieves channel codes from the bubble overview JSON file.",
+        "parameters": [
+          {
+            "name": "bubbleOverviewJSONPath",
+            "type": "str",
+            "description": "Path to the bubble overview JSON file."
+          },
+          {
+            "name": "bubble_id",
+            "type": "str",
+            "description": "Optional bubble ID to retrieve a specific channel code.",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  }

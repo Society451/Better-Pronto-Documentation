@@ -1,0 +1,50 @@
+{
+    "file": "login.js",
+    "description": "This JavaScript file handles the login process for the Better-Pronto application, including email verification and login form submission.",
+    "functions": [
+      {
+        "name": "waitForPywebview",
+        "description": "Waits for the pywebview API to be ready before resolving the promise.",
+        "returns": {
+          "type": "Promise",
+          "description": "A promise that resolves when the pywebview API is ready."
+        }
+      },
+      {
+        "name": "handleLogin",
+        "description": "Handles the login process by sending the email and password to the backend and processing the response.",
+        "parameters": [],
+        "returns": {
+          "type": "void",
+          "description": "No return value."
+        }
+      },
+      {
+        "name": "displayError",
+        "description": "Displays an error message on the login form.",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "string",
+            "description": "The error message to be displayed."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "description": "No return value."
+        }
+      }
+    ],
+    "eventListeners": [
+      {
+        "event": "submit",
+        "description": "Event listener for the login form submission to handle email verification.",
+        "handler": "async function(event) { event.preventDefault(); const email = document.getElementById('email').value; console.log('Submitting email:', email); const response = await window.pywebview.api.handle_email(email); const errorMessage = document.getElementById('error-message'); if (response === 'Invalid email domain') { errorMessage.textContent = response; } else { errorMessage.textContent = ''; window.location.href = 'verificationCode.html'; } }"
+      },
+      {
+        "event": "click",
+        "description": "Event listener for the login button to handle the login process.",
+        "handler": "() => { handleLogin(); }"
+      }
+    ]
+  }

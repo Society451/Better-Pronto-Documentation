@@ -1,0 +1,274 @@
+{
+    "file": "chat.js",
+    "description": "This JavaScript file handles the chat interface for the Better-Pronto application, including message display, category management, and user interactions.",
+    "variables": [
+      {
+        "name": "messagesContainer",
+        "type": "HTMLElement",
+        "description": "Container for displaying messages."
+      },
+      {
+        "name": "messageInput",
+        "type": "HTMLElement",
+        "description": "Input field for typing messages."
+      },
+      {
+        "name": "searchButton",
+        "type": "HTMLElement",
+        "description": "Button to show the search input."
+      },
+      {
+        "name": "searchInput",
+        "type": "HTMLElement",
+        "description": "Input field for searching chats."
+      },
+      {
+        "name": "searchContainer",
+        "type": "HTMLElement",
+        "description": "Container for the search input."
+      },
+      {
+        "name": "clearSearch",
+        "type": "HTMLElement",
+        "description": "Button to clear the search input."
+      },
+      {
+        "name": "toggleAllButton",
+        "type": "HTMLElement",
+        "description": "Button to toggle all categories."
+      },
+      {
+        "name": "chatHeading",
+        "type": "HTMLElement",
+        "description": "Element to display the chat heading."
+      },
+      {
+        "name": "lastSender",
+        "type": "string",
+        "description": "Tracks the last message sender."
+      },
+      {
+        "name": "hasDeletePermission",
+        "type": "boolean",
+        "description": "Indicates if the user has permission to delete messages."
+      },
+      {
+        "name": "isShiftPressed",
+        "type": "boolean",
+        "description": "Tracks if the Shift key is pressed."
+      }
+    ],
+    "functions": [
+      {
+        "name": "updateUnreadCounts",
+        "description": "Updates the display of unread message counts for each chat."
+      },
+      {
+        "name": "setChatHeading",
+        "description": "Sets the chat heading dynamically.",
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "description": "The name to set as the chat heading."
+          }
+        ]
+      },
+      {
+        "name": "showLoading",
+        "description": "Shows the loading animation and hides other UI elements."
+      },
+      {
+        "name": "hideLoading",
+        "description": "Hides the loading animation with a fade effect and shows other UI elements."
+      },
+      {
+        "name": "loadMessages",
+        "description": "Retrieves and displays detailed messages for a specific bubble ID.",
+        "parameters": [
+          {
+            "name": "bubbleID",
+            "type": "string",
+            "description": "ID of the bubble to load messages for."
+          },
+          {
+            "name": "bubbleName",
+            "type": "string",
+            "description": "Name of the bubble to set as the chat heading."
+          }
+        ]
+      },
+      {
+        "name": "initializeCategories",
+        "description": "Initializes categories and chats dynamically from the backend."
+      },
+      {
+        "name": "waitForPywebview",
+        "description": "Waits for the pywebview API to be ready before initializing live bubbles."
+      },
+      {
+        "name": "initializeLiveBubbles",
+        "description": "Fetches live bubbles and then initializes categories."
+      }
+    ],
+    "classes": [
+      {
+        "name": "Message",
+        "description": "Class to create message elements.",
+        "constructor": {
+          "parameters": [
+            {
+              "name": "content",
+              "type": "string",
+              "description": "Content of the message."
+            },
+            {
+              "name": "sender",
+              "type": "string",
+              "description": "Sender of the message."
+            },
+            {
+              "name": "timestamp",
+              "type": "string",
+              "description": "Timestamp of the message."
+            },
+            {
+              "name": "user",
+              "type": "object",
+              "description": "User object containing user details."
+            },
+            {
+              "name": "isDefault",
+              "type": "boolean",
+              "description": "Indicates if the message is a default message.",
+              "optional": true
+            },
+            {
+              "name": "editCount",
+              "type": "number",
+              "description": "Number of times the message has been edited.",
+              "optional": true
+            },
+            {
+              "name": "lastEdited",
+              "type": "string",
+              "description": "Timestamp of the last edit.",
+              "optional": true
+            }
+          ]
+        },
+        "methods": [
+          {
+            "name": "createElement",
+            "description": "Creates and returns a message element.",
+            "returns": {
+              "type": "HTMLElement",
+              "description": "The created message element."
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "description": "Class to create category elements.",
+        "constructor": {
+          "parameters": [
+            {
+              "name": "name",
+              "type": "string",
+              "description": "Name of the category."
+            },
+            {
+              "name": "chats",
+              "type": "array",
+              "description": "Array of chat objects in the category."
+            },
+            {
+              "name": "unreadCounts",
+              "type": "object",
+              "description": "Object mapping chat titles to unread counts.",
+              "optional": true
+            },
+            {
+              "name": "isDM",
+              "type": "boolean",
+              "description": "Indicates if the category is for direct messages.",
+              "optional": true
+            }
+          ]
+        },
+        "methods": [
+          {
+            "name": "createElement",
+            "description": "Creates and returns a category element.",
+            "returns": {
+              "type": "HTMLElement",
+              "description": "The created category element."
+            }
+          },
+          {
+            "name": "createDropdownOptions",
+            "description": "Creates and returns dropdown options for the category.",
+            "parameters": [
+              {
+                "name": "options",
+                "type": "array",
+                "description": "Array of option strings."
+              }
+            ],
+            "returns": {
+              "type": "string",
+              "description": "HTML string of the created dropdown options."
+            }
+          }
+        ]
+      }
+    ],
+    "eventListeners": [
+      {
+        "event": "DOMContentLoaded",
+        "description": "Event listener for the DOMContentLoaded event to initialize the chat interface.",
+        "handler": "async () => { showLoading(); waitForPywebview(); }"
+      },
+      {
+        "event": "keydown",
+        "description": "Event listener to detect Shift key press.",
+        "handler": "(event) => { if (event.key === 'Shift') { isShiftPressed = true; } }"
+      },
+      {
+        "event": "keyup",
+        "description": "Event listener to detect Shift key release.",
+        "handler": "(event) => { if (event.key === 'Shift') { isShiftPressed = false; } }"
+      },
+      {
+        "event": "keypress",
+        "description": "Event listener for the Enter key to send a message.",
+        "handler": "(event) => { if (event.key === 'Enter') { event.preventDefault(); const messageText = messageInput.value.trim(); if (messageText) { const sender = 'You'; const timestamp = new Date().toLocaleString(); const message = new Message(messageText, sender, timestamp); messagesContainer.appendChild(message.createElement()); messageInput.value = ''; messagesContainer.scrollTop = messagesContainer.scrollHeight; } } }"
+      },
+      {
+        "event": "click",
+        "description": "Event listener to toggle all categories.",
+        "handler": "() => { const isCollapsing = toggleAllButton.textContent === 'Collapse All'; document.querySelectorAll('.category-content').forEach(content => { content.classList.toggle('expanded', !isCollapsing); content.classList.toggle('collapsed', isCollapsing); }); document.querySelectorAll('.category-header').forEach(header => { header.classList.toggle('collapsed', isCollapsing); }); toggleAllButton.textContent = isCollapsing ? 'Expand All' : 'Collapse All'; }"
+      },
+      {
+        "event": "click",
+        "description": "Event listener to show the search input.",
+        "handler": "() => { searchButton.style.display = 'none'; searchContainer.style.display = 'flex'; searchInput.focus(); toggleAllButton.style.zIndex = '2'; }"
+      },
+      {
+        "event": "click",
+        "description": "Event listener to clear and exit the search input.",
+        "handler": "() => { searchInput.value = ''; searchContainer.style.display = 'none'; searchButton.style.display = 'block'; toggleAllButton.style.zIndex = ''; }"
+      },
+      {
+        "event": "mousedown",
+        "description": "Event listener to remove any event listeners that might prevent text selection.",
+        "handler": "(event) => { /* Do not call event.preventDefault() */ }"
+      },
+      {
+        "event": "click",
+        "description": "Event listener for dropdown menu options.",
+        "handler": "async (event) => { const optionText = event.target.textContent; const chatItem = event.target.closest('.chat-item'); const chatID = chatItem.getAttribute('data-chat-id'); if (optionText === 'Mark as Read' && chatID) { try { await window.pywebview.api.markBubbleAsRead(chatID); chatItem.querySelector('.unread-count').textContent = '0'; updateUnreadCounts(); } catch (error) { console.error('Error marking bubble as read:', error); } } }"
+      }
+    ]
+  }
