@@ -189,10 +189,14 @@ function generateFunctionsHTML(functions) {
     functions.forEach(func => {
         html += `
             <div class="function-card">
-                <h4 class="function-name">${func.name}</h4>
-                <div class="function-description">${func.description}</div>
-                ${generateParametersHTML(func.parameters)}
-                ${generateReturnsHTML(func.returns)}
+                <div class="card-header">
+                    <h4 class="function-name">${func.name}</h4>
+                    <div class="function-description">${func.description}</div>
+                </div>
+                <div class="card-content">
+                    ${generateParametersHTML(func.parameters)}
+                    ${generateReturnsHTML(func.returns)}
+                </div>
             </div>`;
     });
 
@@ -240,10 +244,14 @@ function generateClassesHTML(classes) {
     classes.forEach(cls => {
         html += `
             <div class="class-card">
-                <h4 class="class-name">${cls.name}</h4>
-                <div class="class-description">${cls.description}</div>
-                ${cls.constructor ? generateConstructorHTML(cls.constructor) : ''}
-                ${cls.methods ? generateMethodsHTML(cls.methods) : ''}
+                <div class="card-header">
+                    <h4 class="class-name">${cls.name}</h4>
+                    <div class="class-description">${cls.description}</div>
+                </div>
+                <div class="card-content">
+                    ${cls.constructor ? generateConstructorHTML(cls.constructor) : ''}
+                    ${cls.methods ? generateMethodsHTML(cls.methods) : ''}
+                </div>
             </div>`;
     });
 
@@ -286,9 +294,13 @@ function generateVariablesHTML(variables) {
     variables.forEach(variable => {
         html += `
             <div class="variable-card">
-                <h4 class="variable-name">${variable.name}</h4>
-                <span class="variable-type">${variable.type}</span>
-                <div class="variable-description">${variable.description}</div>
+                <div class="card-header">
+                    <h4 class="variable-name">${variable.name}</h4>
+                    <span class="variable-type">${variable.type}</span>
+                </div>
+                <div class="card-content">
+                    <div class="variable-description">${variable.description}</div>
+                </div>
             </div>`;
     });
 
@@ -304,10 +316,14 @@ function generateEventListenersHTML(eventListeners) {
     eventListeners.forEach(listener => {
         html += `
             <div class="event-listener-card">
-                <h4 class="event-name">${listener.event}</h4>
-                <div class="event-description">${listener.description}</div>
-                <div class="event-handler">
-                    <pre><code class="language-javascript">${listener.handler}</code></pre>
+                <div class="card-header">
+                    <h4 class="event-name">${listener.event}</h4>
+                    <div class="event-description">${listener.description}</div>
+                </div>
+                <div class="card-content">
+                    <div class="event-handler">
+                        <pre><code class="language-javascript">${listener.handler}</code></pre>
+                    </div>
                 </div>
             </div>`;
     });

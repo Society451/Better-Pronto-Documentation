@@ -242,7 +242,7 @@ body.nav-collapsed header {
 .function-card, .class-card, .variable-card, .event-listener-card {
     background: white;
     border-radius: 8px;
-    padding: 3rem;
+    padding: 2.5rem;
     margin: 3rem 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden; /* Prevent content from spilling out */
@@ -250,9 +250,18 @@ body.nav-collapsed header {
     overflow-wrap: break-word;
     border: 1px solid #e2e8f0;
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 300px 1fr;
     gap: 2rem;
+}
+
+.card-header {
+    border-right: 2px solid #e2e8f0;
+    padding-right: 2rem;
+}
+
+.card-content {
+    padding-left: 2rem;
 }
 
 .function-name, .class-name, .variable-name, .event-name {
@@ -345,11 +354,10 @@ code {
 
 /* Grid Layouts */
 .functions-grid, .classes-grid, .variables-grid, .event-listeners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     margin: 2rem 0;
-    align-items: start; /* Prevent cards from stretching */
     padding: 2rem;
 }
 
@@ -572,4 +580,49 @@ h1, h2, h3 {
 
 #nav-toggle.collapsed .toggle-icon::after {
     transform: translateY(-6px) rotate(-45deg);
+}
+
+/* GitHub Button */
+.github-button {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 15px;
+    background-color: #181717;
+    outline: 3px #181717 solid;
+    outline-offset: -3px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 400ms;
+    z-index: 1000;
+    text-decoration: none;
+}
+
+.github-button .text {
+    color: white;
+    font-weight: 700;
+    font-size: 1em;
+    transition: 400ms;
+    margin: 0;
+}
+
+.github-button svg path {
+    transition: 400ms;
+}
+
+.github-button:hover {
+    background-color: transparent;
+}
+
+.github-button:hover .text {
+    color: #181717;
+}
+
+.github-button:hover svg path {
+    fill: #181717;
 }
