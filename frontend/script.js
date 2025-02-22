@@ -40,7 +40,12 @@ function loadSection(section) {
 }
 
 function generateHTML(doc) {
-    let html = `<h2>${doc.description || 'Description'}</h2>`;
+    let html = `
+        <div class="documentation-section">
+            <h2 class="section-title">${doc.file || 'Documentation'}</h2>
+            <div class="section-description">${doc.description || ''}</div>
+            <div class="content-wrapper">`;
+
     if (doc.functions) {
         html += generateFunctionsHTML(doc.functions);
     }
@@ -53,57 +58,142 @@ function generateHTML(doc) {
     if (doc.eventListeners) {
         html += generateEventListenersHTML(doc.eventListeners);
     }
+
+    html += `</div></div>`;
     return html;
 }
 
 function generateFunctionsHTML(functions) {
-    let html = `<h3>Functions</h3>`;
+    let html = `<div class="functions-section">
+        <h3 class="subsection-title">Functions</h3>
+        <div class="functions-grid">`;
+
     functions.forEach(func => {
-        html += `<h4>${func.name}</h4><p>${func.description}</p>`;
-        if (func.parameters) {
-            html += `<pre>Parameters: ${JSON.stringify(func.parameters, null, 2)}</pre>`;
-        }
-        if (func.returns) {
-            html += `<pre>Returns: ${JSON.stringify(func.returns, null, 2)}</pre>`;
-        }
+        html += `
+            <div class="function-card">
+                <h4 class="function-name">${func.name}</h4>
+                <div class="function-description">${func.description}</div>
+                ${generateParametersHTML(func.parameters)}
+                ${generateReturnsHTML(func.returns)}
+            </div>`;
     });
+
+    html += `</div></div>`;
     return html;
 }
 
+function generateParametersHTML(parameters) {
+    if (!parameters || parameters.length === 0) return '';
+    
+    return `
+        <div class="parameters-section">
+            <h5>Parameters</h5>
+            <div class="parameters-list">
+                ${parameters.map(param => `
+                    <div class="parameter-item">
+                        <span class="parameter-name">${param.name}</span>
+                        <span class="parameter-type">${param.type}</span>
+                        <div class="parameter-description">${param.description}</div>
+                        ${param.optional ? '<span class="parameter-optional">Optional</span>' : ''}
+                    </div>
+                `).join('')}
+            </div>
+        </div>`;
+}
+
+function generateReturnsHTML(returns) {
+    if (!returns) return '';
+    
+    return `
+        <div class="returns-section">
+            <h5>Returns</h5>
+            <div class="returns-info">
+                <span class="returns-type">${returns.type}</span>
+                <div class="returns-description">${returns.description}</div>
+            </div>
+        </div>`;
+}
+
 function generateClassesHTML(classes) {
-    let html = `<h3>Classes</h3>`;
+    let html = `<div class="classes-section">
+        <h3 class="subsection-title">Classes</h3>
+        <div class="classes-grid">`;
+
     classes.forEach(cls => {
-        html += `<h4>${cls.name}</h4><p>${cls.description}</p>`;
-        if (cls.methods) {
-            html += `<h5>Methods</h5>`;
-            cls.methods.forEach(method => {
-                html += `<h6>${method.name}</h6><p>${method.description}</p>`;
-                if (method.parameters) {
-                    html += `<pre>Parameters: ${JSON.stringify(method.parameters, null, 2)}</pre>`;
-                }
-                if (method.returns) {
-                    html += `<pre>Returns: ${JSON.stringify(method.returns, null, 2)}</pre>`;
-                }
-            });
-        }
+        html += `
+            <div class="class-card">
+                <h4 class="class-name">${cls.name}</h4>
+                <div class="class-description">${cls.description}</div>
+                ${cls.constructor ? generateConstructorHTML(cls.constructor) : ''}
+                ${cls.methods ? generateMethodsHTML(cls.methods) : ''}
+            </div>`;
     });
+
+    html += `</div></div>`;
+    return html;
+}
+
+function generateConstructorHTML(constructor) {
+    return `
+        <div class="constructor-section">
+            <h5>Constructor</h5>
+            ${generateParametersHTML(constructor.parameters)}
+        </div>`;
+}
+
+function generateMethodsHTML(methods) {
+    let html = `<div class="methods-section">
+        <h5>Methods</h5>
+        <div class="methods-list">`;
+
+    methods.forEach(method => {
+        html += `
+            <div class="method-item">
+                <h6 class="method-name">${method.name}</h6>
+                <div class="method-description">${method.description}</div>
+                ${generateParametersHTML(method.parameters)}
+                ${generateReturnsHTML(method.returns)}
+            </div>`;
+    });
+
+    html += `</div></div>`;
     return html;
 }
 
 function generateVariablesHTML(variables) {
-    let html = `<h3>Variables</h3>`;
+    let html = `<div class="variables-section">
+        <h3 class="subsection-title">Variables</h3>
+        <div class="variables-grid">`;
+
     variables.forEach(variable => {
-        html += `<h4>${variable.name}</h4><p>${variable.description}</p>`;
-        html += `<pre>Type: ${variable.type}</pre>`;
+        html += `
+            <div class="variable-card">
+                <h4 class="variable-name">${variable.name}</h4>
+                <span class="variable-type">${variable.type}</span>
+                <div class="variable-description">${variable.description}</div>
+            </div>`;
     });
+
+    html += `</div></div>`;
     return html;
 }
 
 function generateEventListenersHTML(eventListeners) {
-    let html = `<h3>Event Listeners</h3>`;
+    let html = `<div class="event-listeners-section">
+        <h3 class="subsection-title">Event Listeners</h3>
+        <div class="event-listeners-grid">`;
+
     eventListeners.forEach(listener => {
-        html += `<h4>${listener.event}</h4><p>${listener.description}</p>`;
-        html += `<pre>Handler: ${listener.handler}</pre>`;
+        html += `
+            <div class="event-listener-card">
+                <h4 class="event-name">${listener.event}</h4>
+                <div class="event-description">${listener.description}</div>
+                <div class="event-handler">
+                    <pre><code>${listener.handler}</code></pre>
+                </div>
+            </div>`;
     });
+
+    html += `</div></div>`;
     return html;
 }
