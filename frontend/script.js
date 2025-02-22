@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Add navigation toggle functionality
+    const navToggle = document.getElementById('nav-toggle');
+    const taskbar = document.getElementById('taskbar');
+    const body = document.body;
+
+    navToggle.addEventListener('click', () => {
+        taskbar.classList.toggle('collapsed');
+        navToggle.classList.toggle('collapsed');
+        body.classList.toggle('nav-collapsed');
+    });
+
     // Listen for clicks on navigation links
     document.querySelectorAll('#taskbar a').forEach(link => {
         link.addEventListener('click', event => {

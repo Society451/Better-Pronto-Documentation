@@ -12,16 +12,31 @@
     <header>
         <h1>Better Pronto Documentation</h1>
     </header>
-    <nav id="taskbar">
-        <a href="#" data-section="prontoWrapper">Pronto Wrapper</a>
-        <a href="#" data-section="websockets">Websockets</a>
-        <a href="#" data-section="verificationCode">Verification Code</a>
-        <a href="#" data-section="systemcheck">System Check</a>
-        <a href="#" data-section="readjson">Read JSON</a>
-        <a href="#" data-section="main">Main</a>
-        <a href="#" data-section="login">Login</a>
-        <a href="#" data-section="chat">Chat</a>
-    </nav>
+    <div id="nav-wrapper">
+        <button id="nav-toggle" aria-label="Toggle navigation">
+            <span class="toggle-icon"></span>
+        </button>
+        <nav id="taskbar" class="expanded">
+            <div class="language-group python">
+                <div class="group-label">Python Modules</div>
+                <div class="group-tabs">
+                    <a href="#" data-section="prontoWrapper">Pronto Wrapper</a>
+                    <a href="#" data-section="systemcheck">System Check</a>
+                    <a href="#" data-section="readjson">Read JSON</a>
+                    <a href="#" data-section="main">Main</a>
+                </div>
+            </div>
+            <div class="language-group javascript">
+                <div class="group-label">JavaScript Modules</div>
+                <div class="group-tabs">
+                    <a href="#" data-section="websockets">Websockets</a>
+                    <a href="#" data-section="verificationCode">Verification Code</a>
+                    <a href="#" data-section="login">Login</a>
+                    <a href="#" data-section="chat">Chat</a>
+                </div>
+            </div>
+        </nav>
+    </div>
     <main id="content">
         <!-- Content is dynamically loaded here -->
     </main>
