@@ -8,13 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     // Load default section
-    loadSection('overview');
+    loadSection('prontoWrapper');
 });
 
 function loadSection(section) {
     // Map each section to its JSON file
     const sectionMap = {
-        'overview': 'documentation/documentation.json',
         'prontoWrapper': 'documentation/prontoWrapper.json',
         'websockets': 'documentation/websockets.json',
         'verificationCode': 'documentation/verificationCode.json',
@@ -27,10 +26,15 @@ function loadSection(section) {
 
     const jsonFilePath = sectionMap[section];
     fetch(jsonFilePath)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             // Use the section key in the received JSON
-            document.getElementById('content').innerHTML = generateHTML(data);
+            document.getElementById('content').innerHTML = generateHTML(data[section] || data);
         })
         .catch(error => console.error(`Error loading ${section} documentation:`, error));
 }

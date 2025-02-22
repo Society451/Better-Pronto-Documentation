@@ -1,0 +1,35 @@
+{
+    "description": "This module handles websocket connections for real-time communication in the Better-Pronto application.",
+    "functions": [
+        {
+            "name": "connectWebSocket",
+            "description": "Establishes a websocket connection to the server.",
+            "parameters": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "The URL of the websocket server."
+                }
+            ],
+            "returns": {
+                "type": "WebSocket",
+                "description": "The established websocket connection."
+            }
+        },
+        {
+            "name": "sendMessage",
+            "description": "Sends a message through the websocket connection.",
+            "parameters": [
+                {
+                    "name": "message",
+                    "type": "string",
+                    "description": "The message to be sent."
+                }
+            ],
+            "returns": {
+                "type": "void",
+                "description": "No return value."
+            }
+        }
+    ]
+}
