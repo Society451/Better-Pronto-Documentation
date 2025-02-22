@@ -155,11 +155,14 @@ function generateProntoParametersHTML(parameters) {
 function generateProntoEndpointHTML(endpoint) {
     if (!endpoint) return '';
     
+    // Ensure the endpoint is a valid URL
+    const url = endpoint.startsWith('http') ? endpoint : `https://${endpoint}`;
+    
     return `
         <div class="endpoint-section">
             <h5>Endpoint</h5>
             <div class="endpoint-info">
-                <a href="${endpoint}" target="_blank" class="endpoint-link">
+                <a href="${url}" target="_blank" rel="noopener noreferrer" class="endpoint-link" title="Open API endpoint in new tab">
                     <code>${endpoint}</code>
                 </a>
             </div>
