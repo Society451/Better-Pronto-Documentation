@@ -1,4 +1,5 @@
 {
+    "file": "websockets.js",
     "description": "This module handles websocket connections for real-time communication in the Better-Pronto application.",
     "functions": [
         {

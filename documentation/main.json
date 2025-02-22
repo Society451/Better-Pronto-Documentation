@@ -2,316 +2,316 @@
     "file": "main.py",
     "description": "This module initializes the Better-Pronto application, handles authentication, and provides methods for fetching and sending data.",
     "classes": [
-      {
-        "name": "Api",
-        "description": "Class to handle API interactions for the Better-Pronto application.",
-        "methods": [
-          {
-            "name": "makeNewWindow",
-            "description": "Creates a new window.",
-            "parameters": [
-              {
-                "name": "windowName",
-                "type": "str",
-                "description": "Name of the window."
-              },
-              {
-                "name": "windowURL",
-                "type": "str",
-                "description": "URL to be loaded in the window."
-              },
-              {
-                "name": "api",
-                "type": "object",
-                "description": "API object to be used in the window."
-              }
-            ],
-            "returns": {
-              "type": "object",
-              "description": "The created window object."
-            }
-          },
-          {
-            "name": "__init__",
-            "description": "Initializes the Api class with the access token.",
-            "parameters": [
-              {
-                "name": "accesstoken",
-                "type": "str",
-                "description": "Access token for authentication."
-              }
+        {
+            "name": "Api",
+            "description": "Class to handle API interactions for the Better-Pronto application.",
+            "methods": [
+                {
+                    "name": "makeNewWindow",
+                    "description": "Creates a new window.",
+                    "parameters": [
+                        {
+                            "name": "windowName",
+                            "type": "str",
+                            "description": "Name of the window."
+                        },
+                        {
+                            "name": "windowURL",
+                            "type": "str",
+                            "description": "URL to be loaded in the window."
+                        },
+                        {
+                            "name": "api",
+                            "type": "object",
+                            "description": "API object to be used in the window."
+                        }
+                    ],
+                    "returns": {
+                        "type": "object",
+                        "description": "The created window object."
+                    }
+                },
+                {
+                    "name": "__init__",
+                    "description": "Initializes the Api class with the access token.",
+                    "parameters": [
+                        {
+                            "name": "accesstoken",
+                            "type": "str",
+                            "description": "Access token for authentication."
+                        }
+                    ]
+                },
+                {
+                    "name": "handle_email",
+                    "description": "Handles the email verification process.",
+                    "parameters": [
+                        {
+                            "name": "email",
+                            "type": "str",
+                            "description": "Email address to be verified."
+                        }
+                    ],
+                    "returns": {
+                        "type": "str",
+                        "description": "Response message indicating the result of the email verification."
+                    }
+                },
+                {
+                    "name": "handle_verification_code",
+                    "description": "Handles the verification code process.",
+                    "parameters": [
+                        {
+                            "name": "code",
+                            "type": "str",
+                            "description": "Verification code received via email."
+                        }
+                    ]
+                },
+                {
+                    "name": "accessToken",
+                    "description": "Retrieves and saves the access token using the login token.",
+                    "returns": {
+                        "type": "str",
+                        "description": "Response message indicating the result of the access token retrieval."
+                    }
+                },
+                {
+                    "name": "get_live_bubbles",
+                    "description": "Fetches live bubbles from the server and saves the response to a file.",
+                    "parameters": [
+                        {
+                            "name": "args",
+                            "type": "tuple",
+                            "description": "Additional arguments."
+                        }
+                    ]
+                },
+                {
+                    "name": "get_dynamicdetailed_messages",
+                    "description": "Fetches detailed messages for a specific bubble ID from the server.",
+                    "parameters": [
+                        {
+                            "name": "bubbleID",
+                            "type": "str",
+                            "description": "ID of the bubble."
+                        }
+                    ],
+                    "returns": {
+                        "type": "dict",
+                        "description": "Dictionary containing detailed messages."
+                    }
+                },
+                {
+                    "name": "get_Localmessages",
+                    "description": "Fetches local messages for a specific bubble ID from the local JSON files.",
+                    "parameters": [
+                        {
+                            "name": "bubbleID",
+                            "type": "str",
+                            "description": "ID of the bubble."
+                        }
+                    ],
+                    "returns": {
+                        "type": "dict",
+                        "description": "Dictionary containing local messages."
+                    }
+                },
+                {
+                    "name": "get_Localdms",
+                    "description": "Fetches direct messages (DMs) from the local JSON files.",
+                    "parameters": [
+                        {
+                            "name": "args",
+                            "type": "tuple",
+                            "description": "Additional arguments."
+                        }
+                    ],
+                    "returns": {
+                        "type": "list",
+                        "description": "List of direct messages."
+                    }
+                },
+                {
+                    "name": "get_Localcategorized_bubbles",
+                    "description": "Fetches categorized bubbles from the local JSON files.",
+                    "parameters": [
+                        {
+                            "name": "args",
+                            "type": "tuple",
+                            "description": "Additional arguments."
+                        }
+                    ],
+                    "returns": {
+                        "type": "list",
+                        "description": "List of categorized bubbles."
+                    }
+                },
+                {
+                    "name": "get_Localuncategorized_bubbles",
+                    "description": "Fetches uncategorized bubbles from the local JSON files.",
+                    "parameters": [
+                        {
+                            "name": "args",
+                            "type": "tuple",
+                            "description": "Additional arguments."
+                        }
+                    ],
+                    "returns": {
+                        "type": "list",
+                        "description": "List of uncategorized bubbles."
+                    }
+                },
+                {
+                    "name": "get_Localunread_bubbles",
+                    "description": "Fetches unread bubbles from the local JSON files.",
+                    "parameters": [
+                        {
+                            "name": "args",
+                            "type": "tuple",
+                            "description": "Additional arguments."
+                        }
+                    ],
+                    "returns": {
+                        "type": "list",
+                        "description": "List of unread bubbles."
+                    }
+                },
+                {
+                    "name": "get_Localcategories",
+                    "description": "Fetches categories from the local JSON files.",
+                    "parameters": [
+                        {
+                            "name": "args",
+                            "type": "tuple",
+                            "description": "Additional arguments."
+                        }
+                    ],
+                    "returns": {
+                        "type": "list",
+                        "description": "List of categories."
+                    }
+                },
+                {
+                    "name": "print_chat_info",
+                    "description": "Prints information about a chat.",
+                    "parameters": [
+                        {
+                            "name": "chat_name",
+                            "type": "str",
+                            "description": "Name of the chat."
+                        },
+                        {
+                            "name": "chat_id",
+                            "type": "str",
+                            "description": "ID of the chat."
+                        }
+                    ]
+                },
+                {
+                    "name": "send_message",
+                    "description": "Sends a message to a specific bubble.",
+                    "parameters": [
+                        {
+                            "name": "bubbleID",
+                            "type": "str",
+                            "description": "ID of the bubble."
+                        },
+                        {
+                            "name": "message",
+                            "type": "str",
+                            "description": "Message content."
+                        },
+                        {
+                            "name": "userID",
+                            "type": "str",
+                            "description": "ID of the user sending the message."
+                        },
+                        {
+                            "name": "parentmessage_id",
+                            "type": "str",
+                            "description": "ID of the parent message, if any.",
+                            "optional": true
+                        }
+                    ],
+                    "returns": {
+                        "type": "dict",
+                        "description": "Response from the server."
+                    }
+                },
+                {
+                    "name": "markBubbleAsRead",
+                    "description": "Marks a bubble as read.",
+                    "parameters": [
+                        {
+                            "name": "bubbleID",
+                            "type": "str",
+                            "description": "ID of the bubble."
+                        }
+                    ],
+                    "returns": {
+                        "type": "dict",
+                        "description": "Response from the server."
+                    }
+                }
             ]
-          },
-          {
-            "name": "handle_email",
-            "description": "Handles the email verification process.",
-            "parameters": [
-              {
-                "name": "email",
-                "type": "str",
-                "description": "Email address to be verified."
-              }
-            ],
-            "returns": {
-              "type": "str",
-              "description": "Response message indicating the result of the email verification."
-            }
-          },
-          {
-            "name": "handle_verification_code",
-            "description": "Handles the verification code process.",
-            "parameters": [
-              {
-                "name": "code",
-                "type": "str",
-                "description": "Verification code received via email."
-              }
-            ]
-          },
-          {
-            "name": "accessToken",
-            "description": "Retrieves and saves the access token using the login token.",
-            "returns": {
-              "type": "str",
-              "description": "Response message indicating the result of the access token retrieval."
-            }
-          },
-          {
-            "name": "get_live_bubbles",
-            "description": "Fetches live bubbles from the server and saves the response to a file.",
-            "parameters": [
-              {
-                "name": "args",
-                "type": "tuple",
-                "description": "Additional arguments."
-              }
-            ]
-          },
-          {
-            "name": "get_dynamicdetailed_messages",
-            "description": "Fetches detailed messages for a specific bubble ID from the server.",
-            "parameters": [
-              {
-                "name": "bubbleID",
-                "type": "str",
-                "description": "ID of the bubble."
-              }
-            ],
-            "returns": {
-              "type": "dict",
-              "description": "Dictionary containing detailed messages."
-            }
-          },
-          {
-            "name": "get_Localmessages",
-            "description": "Fetches local messages for a specific bubble ID from the local JSON files.",
-            "parameters": [
-              {
-                "name": "bubbleID",
-                "type": "str",
-                "description": "ID of the bubble."
-              }
-            ],
-            "returns": {
-              "type": "dict",
-              "description": "Dictionary containing local messages."
-            }
-          },
-          {
-            "name": "get_Localdms",
-            "description": "Fetches direct messages (DMs) from the local JSON files.",
-            "parameters": [
-              {
-                "name": "args",
-                "type": "tuple",
-                "description": "Additional arguments."
-              }
-            ],
-            "returns": {
-              "type": "list",
-              "description": "List of direct messages."
-            }
-          },
-          {
-            "name": "get_Localcategorized_bubbles",
-            "description": "Fetches categorized bubbles from the local JSON files.",
-            "parameters": [
-              {
-                "name": "args",
-                "type": "tuple",
-                "description": "Additional arguments."
-              }
-            ],
-            "returns": {
-              "type": "list",
-              "description": "List of categorized bubbles."
-            }
-          },
-          {
-            "name": "get_Localuncategorized_bubbles",
-            "description": "Fetches uncategorized bubbles from the local JSON files.",
-            "parameters": [
-              {
-                "name": "args",
-                "type": "tuple",
-                "description": "Additional arguments."
-              }
-            ],
-            "returns": {
-              "type": "list",
-              "description": "List of uncategorized bubbles."
-            }
-          },
-          {
-            "name": "get_Localunread_bubbles",
-            "description": "Fetches unread bubbles from the local JSON files.",
-            "parameters": [
-              {
-                "name": "args",
-                "type": "tuple",
-                "description": "Additional arguments."
-              }
-            ],
-            "returns": {
-              "type": "list",
-              "description": "List of unread bubbles."
-            }
-          },
-          {
-            "name": "get_Localcategories",
-            "description": "Fetches categories from the local JSON files.",
-            "parameters": [
-              {
-                "name": "args",
-                "type": "tuple",
-                "description": "Additional arguments."
-              }
-            ],
-            "returns": {
-              "type": "list",
-              "description": "List of categories."
-            }
-          },
-          {
-            "name": "print_chat_info",
-            "description": "Prints information about a chat.",
-            "parameters": [
-              {
-                "name": "chat_name",
-                "type": "str",
-                "description": "Name of the chat."
-              },
-              {
-                "name": "chat_id",
-                "type": "str",
-                "description": "ID of the chat."
-              }
-            ]
-          },
-          {
-            "name": "send_message",
-            "description": "Sends a message to a specific bubble.",
-            "parameters": [
-              {
-                "name": "bubbleID",
-                "type": "str",
-                "description": "ID of the bubble."
-              },
-              {
-                "name": "message",
-                "type": "str",
-                "description": "Message content."
-              },
-              {
-                "name": "userID",
-                "type": "str",
-                "description": "ID of the user sending the message."
-              },
-              {
-                "name": "parentmessage_id",
-                "type": "str",
-                "description": "ID of the parent message, if any.",
-                "optional": true
-              }
-            ],
-            "returns": {
-              "type": "dict",
-              "description": "Response from the server."
-            }
-          },
-          {
-            "name": "markBubbleAsRead",
-            "description": "Marks a bubble as read.",
-            "parameters": [
-              {
-                "name": "bubbleID",
-                "type": "str",
-                "description": "ID of the bubble."
-              }
-            ],
-            "returns": {
-              "type": "dict",
-              "description": "Response from the server."
-            }
-          }
-        ]
-      }
+        }
     ],
     "functions": [
-      {
-        "name": "getLocalAccesstoken",
-        "description": "Retrieves the local access token and sets it globally."
-      },
-      {
-        "name": "save_response_to_file",
-        "description": "Saves the given response data to a specified file.",
-        "parameters": [
-          {
-            "name": "response_data",
-            "type": "dict",
-            "description": "The response data to be saved."
-          },
-          {
-            "name": "file_path",
-            "type": "str",
-            "description": "Path to the file where the response data will be saved."
-          }
-        ]
-      },
-      {
-        "name": "getvalueLogin",
-        "description": "Retrieves a specific value from the login JSON file.",
-        "parameters": [
-          {
-            "name": "file_path",
-            "type": "str",
-            "description": "Path to the login JSON file."
-          },
-          {
-            "name": "value",
-            "type": "str",
-            "description": "The key whose value needs to be retrieved."
-          }
-        ],
-        "returns": {
-          "type": "str",
-          "description": "The value associated with the specified key."
+        {
+            "name": "getLocalAccesstoken",
+            "description": "Retrieves the local access token and sets it globally."
+        },
+        {
+            "name": "save_response_to_file",
+            "description": "Saves the given response data to a specified file.",
+            "parameters": [
+                {
+                    "name": "response_data",
+                    "type": "dict",
+                    "description": "The response data to be saved."
+                },
+                {
+                    "name": "file_path",
+                    "type": "str",
+                    "description": "Path to the file where the response data will be saved."
+                }
+            ]
+        },
+        {
+            "name": "getvalueLogin",
+            "description": "Retrieves a specific value from the login JSON file.",
+            "parameters": [
+                {
+                    "name": "file_path",
+                    "type": "str",
+                    "description": "Path to the login JSON file."
+                },
+                {
+                    "name": "value",
+                    "type": "str",
+                    "description": "The key whose value needs to be retrieved."
+                }
+            ],
+            "returns": {
+                "type": "str",
+                "description": "The value associated with the specified key."
+            }
+        },
+        {
+            "name": "sanitize_folder_name",
+            "description": "Sanitizes a folder name by replacing invalid characters.",
+            "parameters": [
+                {
+                    "name": "name",
+                    "type": "str",
+                    "description": "The folder name to be sanitized."
+                }
+            ],
+            "returns": {
+                "type": "str",
+                "description": "The sanitized folder name."
+            }
         }
-      },
-      {
-        "name": "sanitize_folder_name",
-        "description": "Sanitizes a folder name by replacing invalid characters.",
-        "parameters": [
-          {
-            "name": "name",
-            "type": "str",
-            "description": "The folder name to be sanitized."
-          }
-        ],
-        "returns": {
-          "type": "str",
-          "description": "The sanitized folder name."
-        }
-      }
     ]
-  }
+}

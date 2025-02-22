@@ -2,81 +2,81 @@
     "file": "systemcheck.py",
     "description": "This module provides functions to create necessary application folders and initialize JSON files for the Better-Pronto application.",
     "functions": [
-      {
-        "name": "createappfolders",
-        "description": "Creates the necessary application folders and initializes JSON files if they do not exist.",
-        "parameters": [],
-        "returns": {
-          "type": "tuple",
-          "description": "A tuple containing paths to various application folders and JSON files.",
-          "elements": [
-            {
-              "name": "auth_path",
-              "type": "str",
-              "description": "Path to the authentication folder."
-            },
-            {
-              "name": "chats_path",
-              "type": "str",
-              "description": "Path to the chats folder."
-            },
-            {
-              "name": "bubbles_path",
-              "type": "str",
-              "description": "Path to the bubbles folder."
-            },
-            {
-              "name": "loginTokenJSONPath",
-              "type": "str",
-              "description": "Path to the login token JSON file."
-            },
-            {
-              "name": "authTokenJSONPath",
-              "type": "str",
-              "description": "Path to the authentication token JSON file."
-            },
-            {
-              "name": "verificationCodeResponseJSONPath",
-              "type": "str",
-              "description": "Path to the verification code response JSON file."
-            },
-            {
-              "name": "settings_path",
-              "type": "str",
-              "description": "Path to the settings folder."
-            },
-            {
-              "name": "encryption_path",
-              "type": "str",
-              "description": "Path to the encryption folder."
-            },
-            {
-              "name": "logs_path",
-              "type": "str",
-              "description": "Path to the logs folder."
-            },
-            {
-              "name": "settingsJSONPath",
-              "type": "str",
-              "description": "Path to the settings JSON file."
-            },
-            {
-              "name": "keysJSONPath",
-              "type": "str",
-              "description": "Path to the keys JSON file."
-            },
-            {
-              "name": "bubbleOverviewJSONPath",
-              "type": "str",
-              "description": "Path to the bubble overview JSON file."
-            },
-            {
-              "name": "users_path",
-              "type": "str",
-              "description": "Path to the users folder."
+        {
+            "name": "createappfolders",
+            "description": "Creates the necessary application folders and initializes JSON files if they do not exist.",
+            "parameters": [],
+            "returns": {
+                "type": "tuple",
+                "description": "A tuple containing paths to various application folders and JSON files.",
+                "elements": [
+                    {
+                        "name": "auth_path",
+                        "type": "str",
+                        "description": "Path to the authentication folder."
+                    },
+                    {
+                        "name": "chats_path",
+                        "type": "str",
+                        "description": "Path to the chats folder."
+                    },
+                    {
+                        "name": "bubbles_path",
+                        "type": "str",
+                        "description": "Path to the bubbles folder."
+                    },
+                    {
+                        "name": "loginTokenJSONPath",
+                        "type": "str",
+                        "description": "Path to the login token JSON file."
+                    },
+                    {
+                        "name": "authTokenJSONPath",
+                        "type": "str",
+                        "description": "Path to the authentication token JSON file."
+                    },
+                    {
+                        "name": "verificationCodeResponseJSONPath",
+                        "type": "str",
+                        "description": "Path to the verification code response JSON file."
+                    },
+                    {
+                        "name": "settings_path",
+                        "type": "str",
+                        "description": "Path to the settings folder."
+                    },
+                    {
+                        "name": "encryption_path",
+                        "type": "str",
+                        "description": "Path to the encryption folder."
+                    },
+                    {
+                        "name": "logs_path",
+                        "type": "str",
+                        "description": "Path to the logs folder."
+                    },
+                    {
+                        "name": "settingsJSONPath",
+                        "type": "str",
+                        "description": "Path to the settings JSON file."
+                    },
+                    {
+                        "name": "keysJSONPath",
+                        "type": "str",
+                        "description": "Path to the keys JSON file."
+                    },
+                    {
+                        "name": "bubbleOverviewJSONPath",
+                        "type": "str",
+                        "description": "Path to the bubble overview JSON file."
+                    },
+                    {
+                        "name": "users_path",
+                        "type": "str",
+                        "description": "Path to the users folder."
+                    }
+                ]
             }
-          ]
         }
-      }
     ]
-  }
+}
